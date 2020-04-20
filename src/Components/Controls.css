@@ -1,0 +1,49 @@
+.Controls {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  border-radius: inherit;
+  padding-bottom: 10px;
+  border: 2px solid lightgreen;
+  margin-bottom: 10px;
+}
+
+.ControlRow {
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+}
+
+.Controls > * {
+  flex-grow: 1;
+}
+
+.slider {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  width: fit-content;
+  flex-grow: 1;
+  z-index: 1;
+}
+
+Button {
+  background-color: white;
+  border: 2px lightgreen solid;
+  border-radius: 20px;
+  width: 100px;
+  height: 40px;
+  margin: 10px;
+  color: darkgreen;
+  font-size: 1.5em;
+}
+Button:hover {
+  border-color: darkgreen;
+}
+
+.slider > h1 {
+  color: darkgreen;
+}
