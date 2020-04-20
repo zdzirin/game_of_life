@@ -10,6 +10,11 @@
   margin-bottom: 10px;
 }
 
+.Controls > :focus {
+  outline: none;
+  box-shadow: 4px 4px 4px darkgray;
+}
+
 .ControlRow {
   width: 100%;
   display: flex;

@@ -9,8 +9,3 @@
   border: 4px solid lightgreen;
   padding: 20px;
 }
-
-* > :focus {
-  outline: none;
-  box-shadow: 4px 4px 4px darkgray;
-}
