@@ -33,7 +33,7 @@ export default class Parent extends React.Component {
     this.setState({
       rows: input.value,
       pop: pop,
-      board: new Array2D(rows, this.state.cols, this.state.pop),
+      board: new Array2D(rows, this.state.cols, pop),
     });
   }
 
@@ -45,7 +45,7 @@ export default class Parent extends React.Component {
     this.setState({
       cols: input.value,
       pop: pop,
-      board: new Array2D(this.state.rows, cols, this.state.pop),
+      board: new Array2D(this.state.rows, cols, pop),
     });
   }
 
