@@ -3,25 +3,22 @@
 }
 
 .Board {
-  margin: auto;
-  width: 100%;
   height: 100%;
+  width: 100%;
   display: flex;
   flex-flow: column nowrap;
-  border: 2px solid lightgreen;
 }
 
 .Row {
   display: flex;
   flex-direction: row;
-  flex-shrink: 1;
+  width: 100%;
+  flex: 1 1;
 }
 
 .Tile {
-  height: 100px;
-  width: 100px;
   background-color: white;
-  flex: 1 1;
+  flex-grow: 1;
   margin: 2px;
   border: 2px solid lightgreen;
 }
