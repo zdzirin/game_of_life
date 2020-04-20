@@ -49,6 +49,7 @@ Button:hover {
   border-color: darkgreen;
 }
 
-.slider > h1 {
+.ControlRow > h1 {
   color: darkgreen;
+  margin-left: 5px;
 }
