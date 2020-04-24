@@ -23,6 +23,10 @@
   border: 2px solid lightgreen;
 }
 
+.Tile:hover {
+  border: 2px outset lightgreen;
+}
+
 .Alive {
   background-color: lightgreen !important;
 }

@@ -14,12 +14,12 @@ export default class Array2D {
 
     // Initializes the game
     while (this.placed < n) {
-      let r = Math.floor(Math.random() * (this.rows - 1));
-      let c = Math.floor(Math.random() * (this.cols - 1));
+      let r = Math.floor(Math.random() * this.rows);
+      let c = Math.floor(Math.random() * this.cols);
 
       if (this.getV(r, c) !== 1) {
-        console.log("placing (" + r + ", " + c + ")");
-        console.log(this.placed);
+        //        console.log("placing (" + r + ", " + c + ")");
+        //        console.log(this.placed);
         this.setV(r, c, 1);
       }
     }
@@ -162,7 +162,6 @@ export default class Array2D {
     sum += this.getV(r - 1, c + 1);
 
     sum += this.getV(r, c - 1);
-    sum += this.getV(r, c);
     sum += this.getV(r, c + 1);
 
     sum += this.getV(r + 1, c - 1);
