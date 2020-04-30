@@ -11,7 +11,9 @@ export default function ColorPicker(props) {
       return (
         <div
           className="Swatch"
-          style={{ "background-color": `hsl(${color},80%,75%)` }}
+          style={{
+            "background-color": `hsl(${color},80%,75%)`,
+          }}
           onClick={(event) => props.setColor(color, event)}
         ></div>
       );

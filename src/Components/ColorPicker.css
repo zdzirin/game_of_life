@@ -1,9 +1,10 @@
 .Row {
   width: 100%;
+  flex-flow: row wrap;
 }
 .Swatch {
   height: 50px;
-  width: 20px;
+  min-width: 20px;
   margin: 2px;
   flex-grow: 1;
 }
