@@ -5,42 +5,42 @@ function Tile(props) {
   if (props.value === 1) {
     return (
       <div
-        className="Tile Alive"
-        value={props.value}
-        onClick={() => props.showNeighbors()}
+        className={"Tile Alive"}
+        neighbors={props.neighbors}
+        onClick={() => showNeighbors()}
       ></div>
     );
   } else {
     return (
       <div
         className="Tile"
-        value={props.value}
-        onClick={() => props.showNeighbors()}
+        neighbors={props.neighbors}
+        onClick={() => showNeighbors()}
       ></div>
     );
+  }
+
+  function showNeighbors() {
+    alert(props.neighbors);
   }
 }
 
 export default function Board(props) {
-  const matrix = props.matrix;
-
   function getRow(row, r) {
     return row.map((value, c) => {
       return (
         <Tile
           id={`Tile${r}${c}`}
-          value={matrix[r][c]}
-          showNeighbors={() => {
-            props.showNeighbors(r, c);
-          }}
+          value={props.matrix[r][c]}
+          neighbors={props.neighbors[r][c]}
         />
       );
     });
   }
 
   function getBoard() {
-    return matrix.map((row, r) => {
-      return <div className="Row">{getRow(row, r)}</div>;
+    return props.matrix.map((row, r) => {
+      return <div className="BoardRow">{getRow(row, r)}</div>;
     });
   }
 

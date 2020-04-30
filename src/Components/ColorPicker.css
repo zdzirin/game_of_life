@@ -1,0 +1,9 @@
+.Row {
+  width: 100%;
+}
+.Swatch {
+  height: 50px;
+  width: 20px;
+  margin: 2px;
+  flex-grow: 1;
+}

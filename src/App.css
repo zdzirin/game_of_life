@@ -1,20 +1,26 @@
+:root {
+  --board-color: 120;
+}
+
 .App {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: lightslategray;
   height: 100vh;
   width: 100vw;
-  color: white;
 }
 
 p {
   color: darkgreen;
   font-size: 1.5em;
   margin: 10px 0px 0px 10px;
+  font-family: "Montserrat", sans-serif;
 }
 
 h1 {
-  color: white;
+  color: White;
+  font-family: "Merriweather", serif;
+  font-size: 3em;
+  margin: 10px;
 }

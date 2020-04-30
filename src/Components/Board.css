@@ -3,13 +3,16 @@
 }
 
 .Board {
-  height: 100%;
-  width: 100%;
+  position: relative;
+  width: 98%;
+  height: 100px;
   display: flex;
   flex-flow: column nowrap;
+  flex-grow: 1;
+  background-color: white;
 }
 
-.Row {
+.BoardRow {
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -20,13 +23,35 @@
   background-color: white;
   flex-grow: 1;
   margin: 2px;
-  border: 2px solid lightgreen;
-}
-
-.Tile:hover {
-  border: 2px outset lightgreen;
 }
 
 .Alive {
-  background-color: lightgreen !important;
+}
+
+.Alive[neighbors="0"] {
+  background-color: hsl(var(--board-color), 20%, 90%) !important;
+}
+.Alive[neighbors="1"] {
+  background-color: hsl(var(--board-color), 30%, 87.5%) !important;
+}
+.Alive[neighbors="2"] {
+  background-color: hsl(var(--board-color), 40%, 85%) !important;
+}
+.Alive[neighbors="3"] {
+  background-color: hsl(var(--board-color), 50%, 82.5%) !important;
+}
+.Alive[neighbors="4"] {
+  background-color: hsl(var(--board-color), 60%, 80%) !important;
+}
+.Alive[neighbors="5"] {
+  background-color: hsl(var(--board-color), 70%, 77.5%) !important;
+}
+.Alive[neighbors="6"] {
+  background-color: hsl(var(--board-color), 80%, 75%) !important;
+}
+.Alive[neighbors="7"] {
+  background-color: hsl(var(--board-color), 90%, 72.5%) !important;
+}
+.Alive[neighbors="8"] {
+  background-color: hsl(var(--board-color), 100%, 70%) !important;
 }

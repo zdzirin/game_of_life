@@ -3,6 +3,7 @@ import Controls from "./Controls";
 import Board from "./Board";
 import Array2D from "./Array2D";
 import { render } from "@testing-library/react";
+import ColorPicker from "./ColorPicker";
 
 export default class Parent extends React.Component {
   constructor(props) {
@@ -18,29 +19,33 @@ export default class Parent extends React.Component {
       speed: 200,
       board: this.board,
       matrix: this.board.getMatrix(),
+      openControls: false,
     };
   }
 
-  async play() {
-    this.playing = true;
-
-    let interval = setInterval(() => {
-      if (this.playing) {
-        this.getNextStage();
-        if (this.state.board.placed === 0) {
-          this.playing = false;
+  async play(e) {
+    e.stopPropagation();
+    if (!this.playing) {
+      let interval = setInterval(() => {
+        if (this.playing) {
+          this.getNextStage();
+          if (this.state.board.placed === 0) {
+            this.playing = false;
+            clearInterval(interval);
+            alert("No Survivors :(");
+          }
+        } else {
           clearInterval(interval);
-          alert("No Survivors :(");
         }
-      } else {
-        clearInterval(interval);
-      }
-    }, this.state.speed);
+      }, this.state.speed);
 
-    this.getNextStage();
+      this.getNextStage();
+    }
+    this.playing = true;
   }
 
-  pause() {
+  pause(e) {
+    e.stopPropagation();
     this.playing = false;
   }
 
@@ -57,14 +62,14 @@ export default class Parent extends React.Component {
         if (this.state.board.getV(r, c) === 1) {
           // kill if not 2 or 3 neighbors
           if (nSum !== 2 && nSum !== 3) {
-            console.log("killing [" + r + ", " + c + "], n: " + nSum);
+            //console.log("killing [" + r + ", " + c + "], n: " + nSum);
             this.state.board.setV(r, c, 0);
             swapped++;
           }
         } else {
           // if dead revive if exactly three neighbors
           if (nSum === 3) {
-            console.log("reviving [" + r + ", " + c + "], n: " + nSum);
+            //console.log("reviving [" + r + ", " + c + "], n: " + nSum);
             this.state.board.setV(r, c, 1);
             swapped++;
           }
@@ -83,7 +88,8 @@ export default class Parent extends React.Component {
     }
   }
 
-  changeRow() {
+  changeRow(e) {
+    e.stopPropagation();
     let input = document.getElementById("rows");
     let rows = input.value;
     let size = this.state.cols * rows;
@@ -97,7 +103,8 @@ export default class Parent extends React.Component {
     });
   }
 
-  changeCol() {
+  changeCol(e) {
+    e.stopPropagation();
     let input = document.getElementById("cols");
     let cols = input.value;
     let size = this.state.rows * cols;
@@ -111,7 +118,8 @@ export default class Parent extends React.Component {
     });
   }
 
-  changePop() {
+  changePop(e) {
+    e.stopPropagation();
     let input = document.getElementById("pop");
     let board = new Array2D(this.state.rows, this.state.cols, input.value);
     this.setState({
@@ -126,35 +134,60 @@ export default class Parent extends React.Component {
     else return this.state.pop;
   }
 
-  showNeighbors(r, c) {
-    alert(
-      `Neighbors for (${r}, ${c}): ${
-        this.state.board.getNeighborMatrix()[r][c]
-      }`
-    );
+  swapControls() {
+    this.setState({ openControls: !this.state.openControls });
   }
 
-  render() {
-    return (
-      <div className="parent">
+  showControls() {
+    if (this.state.openControls === true) {
+      return (
         <Controls
           size={this.state.cols * this.state.rows}
           rows={this.state.rows}
           cols={this.state.cols}
           pop={this.state.pop}
-          changeRow={() => this.changeRow()}
-          changeCol={() => this.changeCol()}
-          changePop={() => this.changePop()}
-          play={() => {
-            this.play();
-          }}
-          pause={() => {
-            this.pause();
-          }}
+          changeRow={(event) => this.changeRow(event)}
+          changeCol={(event) => this.changeCol(event)}
+          changePop={(event) => this.changePop(event)}
         ></Controls>
+      );
+    } else {
+      return;
+    }
+  }
+
+  setColor(color, e) {
+    e.stopPropagation();
+    let root = document.documentElement;
+    root.style.setProperty("--board-color", color);
+  }
+
+  render() {
+    return (
+      <div className="parent">
+        <div className="Header" onClick={() => this.swapControls()}>
+          <div className="Row HRow">
+            <div className="Background">
+              <h1>Conway's Game of Life</h1>
+            </div>
+            <button type="button" onClick={(event) => this.play(event)}>
+              Play
+            </button>
+            <button
+              type="button"
+              onClick={(event) => {
+                this.pause(event);
+              }}
+            >
+              Pause
+            </button>
+          </div>
+          {this.showControls()}
+          <ColorPicker setColor={this.setColor}></ColorPicker>
+        </div>
         <Board
           matrix={this.state.matrix}
-          showNeighbors={(r, c) => this.showNeighbors(r, c)}
+          neighbors={this.state.board.getNeighborMatrix()}
         />
       </div>
     );
