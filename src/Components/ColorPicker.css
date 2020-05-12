@@ -1,10 +1,16 @@
-.Row {
+.ColorPicker {
   width: 100%;
-  flex-flow: row wrap;
+  display: flex;
+  flex-flow: row nowrap;
 }
 .Swatch {
-  height: 50px;
+  height: 30px;
   min-width: 20px;
   margin: 2px;
   flex-grow: 1;
+  border: none;
+}
+
+.Swatch:hover {
+  border: none;
 }

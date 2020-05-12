@@ -13,7 +13,7 @@
 
 p {
   color: darkgreen;
-  font-size: 1.5em;
+  font-size: 1em;
   margin: 10px 0px 0px 10px;
   font-family: "Montserrat", sans-serif;
 }
@@ -21,6 +21,6 @@ p {
 h1 {
   color: White;
   font-family: "Merriweather", serif;
-  font-size: 3em;
+  font-size: 3vw;
   margin: 10px;
 }

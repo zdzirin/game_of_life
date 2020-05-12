@@ -46,7 +46,7 @@ export default class Array2D {
     let tmp = new Array(this.rows);
     for (let r = 0; r < this.rows; r++) {
       tmp[r] = [];
-      for (let c = 0; c < this.rows; c++) {
+      for (let c = 0; c < this.cols; c++) {
         tmp[r].push(this.getNeighbors(r, c));
       }
     }

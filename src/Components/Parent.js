@@ -23,8 +23,7 @@ export default class Parent extends React.Component {
     };
   }
 
-  async play(e) {
-    e.stopPropagation();
+  async play() {
     if (!this.playing) {
       let interval = setInterval(() => {
         if (this.playing) {
@@ -32,7 +31,6 @@ export default class Parent extends React.Component {
           if (this.state.board.placed === 0) {
             this.playing = false;
             clearInterval(interval);
-            alert("No Survivors :(");
           }
         } else {
           clearInterval(interval);
@@ -44,8 +42,7 @@ export default class Parent extends React.Component {
     this.playing = true;
   }
 
-  pause(e) {
-    e.stopPropagation();
+  pause() {
     this.playing = false;
   }
 
@@ -84,12 +81,10 @@ export default class Parent extends React.Component {
 
     if (swapped === 0) {
       this.playing = false;
-      alert("reached equillibrium");
     }
   }
 
-  changeRow(e) {
-    e.stopPropagation();
+  changeRow() {
     let input = document.getElementById("rows");
     let rows = input.value;
     let size = this.state.cols * rows;
@@ -103,13 +98,13 @@ export default class Parent extends React.Component {
     });
   }
 
-  changeCol(e) {
-    e.stopPropagation();
+  changeCol() {
     let input = document.getElementById("cols");
     let cols = input.value;
     let size = this.state.rows * cols;
     let pop = this.checkPop(size);
     let board = new Array2D(this.state.rows, cols, pop);
+
     this.setState({
       cols: input.value,
       pop: pop,
@@ -118,8 +113,7 @@ export default class Parent extends React.Component {
     });
   }
 
-  changePop(e) {
-    e.stopPropagation();
+  changePop() {
     let input = document.getElementById("pop");
     let board = new Array2D(this.state.rows, this.state.cols, input.value);
     this.setState({
@@ -141,23 +135,29 @@ export default class Parent extends React.Component {
   showControls() {
     if (this.state.openControls === true) {
       return (
-        <Controls
-          size={this.state.cols * this.state.rows}
-          rows={this.state.rows}
-          cols={this.state.cols}
-          pop={this.state.pop}
-          changeRow={(event) => this.changeRow(event)}
-          changeCol={(event) => this.changeCol(event)}
-          changePop={(event) => this.changePop(event)}
-        ></Controls>
+        <>
+          <Controls
+            size={this.state.cols * this.state.rows}
+            rows={this.state.rows}
+            cols={this.state.cols}
+            pop={this.state.pop}
+            changeRow={() => this.changeRow()}
+            changeCol={() => this.changeCol()}
+            changePop={() => this.changePop()}
+          ></Controls>
+          <ColorPicker
+            setColor={(color) => {
+              this.setColor(color);
+            }}
+          ></ColorPicker>
+        </>
       );
     } else {
       return;
     }
   }
 
-  setColor(color, e) {
-    e.stopPropagation();
+  setColor(color) {
     let root = document.documentElement;
     root.style.setProperty("--board-color", color);
   }
@@ -165,25 +165,32 @@ export default class Parent extends React.Component {
   render() {
     return (
       <div className="parent">
-        <div className="Header" onClick={() => this.swapControls()}>
+        <div className="Header">
           <div className="Row HRow">
             <div className="Background">
               <h1>Conway's Game of Life</h1>
             </div>
-            <button type="button" onClick={(event) => this.play(event)}>
+            <button type="button" onClick={() => this.play()}>
               Play
             </button>
             <button
               type="button"
-              onClick={(event) => {
-                this.pause(event);
+              onClick={() => {
+                this.pause();
               }}
             >
               Pause
             </button>
+            <button
+              type="button"
+              onClick={() => {
+                this.swapControls();
+              }}
+            >
+              Controls
+            </button>
           </div>
           {this.showControls()}
-          <ColorPicker setColor={this.setColor}></ColorPicker>
         </div>
         <Board
           matrix={this.state.matrix}

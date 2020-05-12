@@ -3,25 +3,9 @@ import "./Board.css";
 
 function Tile(props) {
   if (props.value === 1) {
-    return (
-      <div
-        className={"Tile Alive"}
-        neighbors={props.neighbors}
-        onClick={() => showNeighbors()}
-      ></div>
-    );
+    return <div className={"Tile Alive"} neighbors={props.neighbors}></div>;
   } else {
-    return (
-      <div
-        className="Tile"
-        neighbors={props.neighbors}
-        onClick={() => showNeighbors()}
-      ></div>
-    );
-  }
-
-  function showNeighbors() {
-    alert(props.neighbors);
+    return <div className="Tile" neighbors={props.neighbors}></div>;
   }
 }
 

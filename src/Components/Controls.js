@@ -15,8 +15,8 @@ export default function Controls(props) {
               min="10"
               max="50"
               defaultValue={props.rows}
-              onInput={(event) => {
-                props.changeRow(event);
+              onInput={() => {
+                props.changeRow();
               }}
             ></input>
             <p className="DisplayNumber">{props.rows}</p>
@@ -32,8 +32,8 @@ export default function Controls(props) {
               min="10"
               max="50"
               defaultValue={props.cols}
-              onInput={(event) => {
-                props.changeCol(event);
+              onInput={() => {
+                props.changeCol();
               }}
             ></input>
             <p className="DisplayNumber">{props.cols}</p>
@@ -49,8 +49,8 @@ export default function Controls(props) {
               min="3"
               max={props.size}
               defaultValue={props.pop}
-              onInput={(event) => {
-                props.changePop(event);
+              onInput={() => {
+                props.changePop();
               }}
             ></input>
             <p className="DisplayNumber">{props.pop}</p>

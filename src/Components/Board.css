@@ -3,9 +3,7 @@
 }
 
 .Board {
-  position: relative;
   width: 98%;
-  height: 100px;
   display: flex;
   flex-flow: column nowrap;
   flex-grow: 1;
@@ -23,9 +21,6 @@
   background-color: white;
   flex-grow: 1;
   margin: 2px;
-}
-
-.Alive {
 }
 
 .Alive[neighbors="0"] {

@@ -4,8 +4,6 @@
   flex-flow: column nowrap;
   align-items: center;
   border-radius: inherit;
-  padding: 10px 0px;
-  margin-bottom: 10px;
   background-color: white;
 }
 
@@ -35,8 +33,9 @@
 .ControlRow > h1 {
   color: darkgreen;
   margin-left: 5px;
+  align-items: center;
 }
 
 .DisplayNumber {
-  font-size: 3em;
+  font-size: 3vw;
 }
